@@ -56,15 +56,16 @@ func (s *DummyDeliveryService) Describe(DeliveryID uint64) (*logistic.Delivery, 
 }
 
 func (s *DummyDeliveryService) List(cursor uint64, limit uint64) ([]logistic.Delivery, error) {
-	start := int(cursor)
-	if start >= len(s.deliveries) {
-		return nil, fmt.Errorf("start range is too big: %d", start)
+	total := uint64(len(s.deliveries))
+	if limit == 0 || cursor >= total {
+		return []logistic.Delivery{}, nil
 	}
-	end := start + int(limit)
-	if end > len(s.deliveries) {
-		return nil, fmt.Errorf("end range is wrong: %d", end)
+	remaining := total - cursor
+	if limit > remaining {
+		limit = remaining
 	}
-	return s.deliveries[start:], nil
+
+	return s.deliveries[cursor : cursor+limit], nil
 
 }
 
