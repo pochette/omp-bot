@@ -15,6 +15,7 @@ const (
 )
 
 func (c *commander) List(inputMessage *tgbotapi.Message) {
+
 	outputMessage := "Here all the products: \n\n"
 
 	products, _ := c.service.List(initialOffset, pageLimit)

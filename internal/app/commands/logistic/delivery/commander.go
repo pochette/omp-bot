@@ -49,7 +49,6 @@ func (c *commander) HandleCallback(callback *tgbotapi.CallbackQuery, callbackPat
 	default:
 		log.Printf("commander.HandleCommand: unknown callback name - %s", callbackPath.CallbackName)
 	}
-
 }
 
 func (c *commander) HandleCommand(message *tgbotapi.Message, commandPath path.CommandPath) {

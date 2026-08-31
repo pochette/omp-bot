@@ -27,7 +27,7 @@ func (s *DummyDeliveryService) getNextId() uint64 {
 
 func NewDummyDeliveryService() *DummyDeliveryService {
 	return &DummyDeliveryService{
-		nextId: 3,
+		nextId: 11,
 		deliveries: []logistic.Delivery{
 			{
 				ID:          1,
@@ -39,6 +39,54 @@ func NewDummyDeliveryService() *DummyDeliveryService {
 				ID:          2,
 				AddressFrom: "Ростов",
 				AddressTo:   "Нижний Новгород",
+				Status:      logistic.DeliveryStatusInTransit,
+			},
+			{
+				ID:          3,
+				AddressFrom: "Москва",
+				AddressTo:   "Казань",
+				Status:      logistic.DeliveryStatusCreated,
+			},
+			{
+				ID:          4,
+				AddressFrom: "Санкт-Петербург",
+				AddressTo:   "Екатеринбург",
+				Status:      logistic.DeliveryStatusInTransit,
+			},
+			{
+				ID:          5,
+				AddressFrom: "Новосибирск",
+				AddressTo:   "Омск",
+				Status:      logistic.DeliveryStatusCreated,
+			},
+			{
+				ID:          6,
+				AddressFrom: "Самара",
+				AddressTo:   "Уфа",
+				Status:      logistic.DeliveryStatusInTransit,
+			},
+			{
+				ID:          7,
+				AddressFrom: "Воронеж",
+				AddressTo:   "Пермь",
+				Status:      logistic.DeliveryStatusCreated,
+			},
+			{
+				ID:          8,
+				AddressFrom: "Волгоград",
+				AddressTo:   "Саратов",
+				Status:      logistic.DeliveryStatusInTransit,
+			},
+			{
+				ID:          9,
+				AddressFrom: "Тюмень",
+				AddressTo:   "Челябинск",
+				Status:      logistic.DeliveryStatusCreated,
+			},
+			{
+				ID:          10,
+				AddressFrom: "Иркутск",
+				AddressTo:   "Красноярск",
 				Status:      logistic.DeliveryStatusInTransit,
 			},
 		},
