@@ -12,11 +12,23 @@ type Service interface {
 	Create(logistic.Delivery) (uint64, error)
 	Update(DeliveryID uint64, Delivery logistic.Delivery) error
 	Remove(DeliveryID uint64) (bool, error)
+	Get(DeliveryId uint64) (*logistic.Delivery, error)
 }
 
 type DummyDeliveryService struct {
 	nextId     uint64
 	deliveries []logistic.Delivery
+}
+
+func (s *DummyDeliveryService) Get(DeliveryId uint64) (*logistic.Delivery, error) {
+	for _, delivery := range s.deliveries {
+		if delivery.ID == DeliveryId {
+			return &delivery, nil
+		}
+	}
+	return nil, fmt.Errorf(
+		"delivery with id %d was not found",
+		DeliveryId)
 }
 
 func (s *DummyDeliveryService) getNextId() uint64 {
