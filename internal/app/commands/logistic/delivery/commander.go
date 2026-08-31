@@ -59,8 +59,9 @@ func (c *commander) HandleCommand(message *tgbotapi.Message, commandPath path.Co
 		c.List(message)
 	case "get":
 		c.Get(message)
+	case "delete":
+		c.Delete(message)
 	default:
 		c.Default(message)
-
 	}
 }
