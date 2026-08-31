@@ -1,14 +1,16 @@
 package subdomain
 
 import (
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 	"log"
+
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 
 func (c *DemoSubdomainCommander) Help(inputMessage *tgbotapi.Message) {
 	msg := tgbotapi.NewMessage(inputMessage.Chat.ID,
 		"/help - help\n"+
-			"/list - list products",
+			"/list - list products"+
+			"/delete{id} - to delete delivery by id ",
 	)
 
 	_, err := c.bot.Send(msg)

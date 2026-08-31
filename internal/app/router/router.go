@@ -5,7 +5,7 @@ import (
 	"runtime/debug"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/ozonmp/omp-bot/internal/app/commands/demo"
+	"github.com/ozonmp/omp-bot/internal/app/commands/logistic"
 	"github.com/ozonmp/omp-bot/internal/app/path"
 )
 
@@ -19,7 +19,7 @@ type Router struct {
 	bot *tgbotapi.BotAPI
 
 	// demoCommander
-	demoCommander Commander
+	//demoCommander
 	// user
 	// access
 	// buy
@@ -42,7 +42,7 @@ type Router struct {
 	// rating
 	// security
 	// cinema
-	// logistic
+	logisticCommander Commander
 	// product
 	// education
 }
@@ -54,7 +54,7 @@ func NewRouter(
 		// bot
 		bot: bot,
 		// demoCommander
-		demoCommander: demo.NewDemoCommander(bot),
+		logisticCommander: logistic.NewLogisticCommander(bot),
 		// user
 		// access
 		// buy
@@ -107,7 +107,7 @@ func (c *Router) handleCallback(callback *tgbotapi.CallbackQuery) {
 
 	switch callbackPath.Domain {
 	case "demo":
-		c.demoCommander.HandleCallback(callback, callbackPath)
+		break
 	case "user":
 		break
 	case "access":
@@ -153,7 +153,7 @@ func (c *Router) handleCallback(callback *tgbotapi.CallbackQuery) {
 	case "cinema":
 		break
 	case "logistic":
-		break
+		c.logisticCommander.HandleCallback(callback, callbackPath)
 	case "product":
 		break
 	case "education":
@@ -178,7 +178,7 @@ func (c *Router) handleMessage(msg *tgbotapi.Message) {
 
 	switch commandPath.Domain {
 	case "demo":
-		c.demoCommander.HandleCommand(msg, commandPath)
+		break
 	case "user":
 		break
 	case "access":
@@ -224,7 +224,7 @@ func (c *Router) handleMessage(msg *tgbotapi.Message) {
 	case "cinema":
 		break
 	case "logistic":
-		break
+		c.logisticCommander.HandleCommand(msg, commandPath)
 	case "product":
 		break
 	case "education":
