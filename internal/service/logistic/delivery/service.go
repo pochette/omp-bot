@@ -9,7 +9,7 @@ import (
 type Service interface {
 	Describe(DeliveryID uint64) (*logistic.Delivery, error)
 	List(cursor uint64, limit uint64) ([]logistic.Delivery, error)
-	Create(logistic.Delivery) (uint64, error)
+	Create(delivery *logistic.Delivery) (uint64, error)
 	Update(DeliveryID uint64, Delivery logistic.Delivery) error
 	Remove(DeliveryID uint64) (bool, error)
 	Get(DeliveryId uint64) (*logistic.Delivery, error)
@@ -31,10 +31,9 @@ func (s *DummyDeliveryService) Get(DeliveryId uint64) (*logistic.Delivery, error
 		DeliveryId)
 }
 
-func (s *DummyDeliveryService) getNextId() uint64 {
-	id := s.nextId
+func (s *DummyDeliveryService) GetNextId() uint64 {
 	s.nextId++
-	return id
+	return s.nextId
 }
 
 func NewDummyDeliveryService() *DummyDeliveryService {
@@ -129,11 +128,11 @@ func (s *DummyDeliveryService) List(cursor uint64, limit uint64) ([]logistic.Del
 
 }
 
-func (s *DummyDeliveryService) Create(delivery logistic.Delivery) (uint64, error) {
-	delivery.ID = s.getNextId()
+func (s *DummyDeliveryService) Create(delivery *logistic.Delivery) (uint64, error) {
+	delivery.ID = s.GetNextId()
 	s.deliveries = append(
 		s.deliveries,
-		delivery,
+		*delivery,
 	)
 	return delivery.ID, nil
 }

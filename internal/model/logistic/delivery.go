@@ -11,8 +11,12 @@ type Delivery struct {
 	Status      DeliveryStatus
 }
 
-func NewDelivery(ID uint64, addressFrom string, addressTo string, status DeliveryStatus) *Delivery {
-	return &Delivery{ID: ID, AddressFrom: addressFrom, AddressTo: addressTo, Status: status}
+func NewDelivery(addressFrom string, addressTo string, status DeliveryStatus) *Delivery {
+
+	return &Delivery{
+		AddressFrom: addressFrom,
+		AddressTo:   addressTo,
+		Status:      status}
 }
 func (d Delivery) String() string {
 	return fmt.Sprintf(

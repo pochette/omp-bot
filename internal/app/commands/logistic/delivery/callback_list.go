@@ -15,6 +15,8 @@ type CallbackListData struct {
 
 func (c *commander) CallBackList(callback *tgbotapi.CallbackQuery, callbackPath path.CallbackPath) {
 
+	outputMessage := ""
+
 	var data = CallbackListData{}
 
 	err := json.Unmarshal([]byte(callbackPath.CallbackData), &data)
@@ -30,8 +32,9 @@ func (c *commander) CallBackList(callback *tgbotapi.CallbackQuery, callbackPath 
 		log.Printf("CallBackList: error listing deliveries: %v", err)
 		return
 	}
-
-	outputMessage := "Доставки: \n\n"
+	if len(delivers) == 0 {
+		outputMessage += "Доставок не найдено"
+	}
 
 	for _, d := range delivers {
 		outputMessage += d.String() + "\n"

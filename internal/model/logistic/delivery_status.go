@@ -9,6 +9,7 @@ const (
 	DeliveryStatusInTransit
 	DeliveryStatusDelivered
 	DeliveryStatusCanceled
+	DeliveryStatusUpdated
 )
 
 func (d DeliveryStatus) String() string {
@@ -26,6 +27,9 @@ func (d DeliveryStatus) String() string {
 		return "delivered"
 	case DeliveryStatusCanceled:
 		return "canceled"
+	case DeliveryStatusUpdated:
+		return "updated"
+
 	default:
 		return "invalid"
 
