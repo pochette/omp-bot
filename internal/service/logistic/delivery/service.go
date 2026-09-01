@@ -32,8 +32,9 @@ func (s *DummyDeliveryService) Get(DeliveryId uint64) (*logistic.Delivery, error
 }
 
 func (s *DummyDeliveryService) GetNextId() uint64 {
+	id := s.nextId
 	s.nextId++
-	return s.nextId
+	return id
 }
 
 func NewDummyDeliveryService() *DummyDeliveryService {

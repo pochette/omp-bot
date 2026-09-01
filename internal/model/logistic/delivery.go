@@ -24,5 +24,5 @@ func (d Delivery) String() string {
 		d.ID,
 		d.AddressFrom,
 		d.AddressTo,
-		d.Status.String())
+		d.Status)
 }
